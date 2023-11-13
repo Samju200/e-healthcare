@@ -12,13 +12,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @NoArgsConstructor
 @Document(collection = "admins")
-public class AdminModel {
+public class AdminUser {
     @Id
     private String id;
     private String username;
     private String fullname;
     private String password;
-    private int phoneNumber;
+    private String phoneNumber;
     private String role;
 
 

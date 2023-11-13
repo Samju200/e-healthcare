@@ -1,7 +1,10 @@
 package com.samju.hospital.repository;
 
-import com.samju.hospital.entity.AdminModel;
+import com.samju.hospital.entity.AdminUser;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface AdminRepository extends MongoRepository<AdminModel, String> {
+import java.util.Optional;
+
+public interface AdminRepository extends MongoRepository<AdminUser, String> {
+    Optional<AdminUser> findByUsername(String username);
 }
