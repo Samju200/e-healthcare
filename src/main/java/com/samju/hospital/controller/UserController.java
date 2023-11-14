@@ -1,9 +1,9 @@
 package com.samju.hospital.controller;
 
 import com.mongodb.DuplicateKeyException;
-import com.samju.hospital.entity.AdminUser;
-import com.samju.hospital.entity.AdminUserDto;
-import com.samju.hospital.service.AdminServiceImpl;
+import com.samju.hospital.entity.User;
+import com.samju.hospital.entity.UserDto;
+import com.samju.hospital.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,20 +16,20 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
-public class AdminController {
+public class UserController {
     @Autowired
-    private AdminServiceImpl adminServiceImpl;
+    private UserServiceImpl adminServiceImpl;
 
 
 
     @PostMapping("/create")
-    public ResponseEntity<?> createUser(@RequestBody AdminUserDto adminUserDto) {
+    public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
         try {
-            Optional <AdminUser>  existUser = adminServiceImpl.usernameCheck(adminUserDto.getUsername());
+            Optional <User>  existUser = adminServiceImpl.usernameCheck(userDto.getUsername());
             if (existUser.isPresent()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username already exists");
             }
-            AdminUser newUser = adminServiceImpl.createUser(adminUserDto);
+            User newUser = adminServiceImpl.createUser(userDto);
             // You may want to return only specific information or a success message
             return ResponseEntity.ok("User created successfully with id: " + newUser.getId());
         } catch (DuplicateKeyException e) {
@@ -43,11 +43,11 @@ public class AdminController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AdminUser loginRequest) {
+    public ResponseEntity<?> login(@RequestBody User loginRequest) {
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
 
-        Optional<AdminUser> userOptional = adminServiceImpl.login(username, password);
+        Optional<User> userOptional = adminServiceImpl.login(username, password);
 
         if (userOptional.isPresent()) {
             // User authenticated successfully

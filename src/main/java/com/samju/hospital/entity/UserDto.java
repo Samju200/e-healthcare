@@ -9,12 +9,12 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class AdminUserDto {
+public class UserDto {
     @Id
-    private int id;
+    private Long id;
     private String username;
-    private String fullname;
+    private String fullName;
     private String password;
-    private String phoneNumber;
+    private int phoneNumber;
     private String role;
 }
