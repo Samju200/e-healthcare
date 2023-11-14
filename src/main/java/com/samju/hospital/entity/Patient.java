@@ -24,8 +24,6 @@ public class Patient {
     private String hmoNumber;
     private String patientStatus;
     private String title;
-
-    private String patientState;
     private String surname;
     private String firstname;
     private String phoneNumber;
