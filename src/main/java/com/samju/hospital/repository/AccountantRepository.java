@@ -1,7 +1,10 @@
 package com.samju.hospital.repository;
 
 import com.samju.hospital.entity.Accountant;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-public interface AccountantRepository extends MongoRepository<Accountant, Long> {
+@Repository
+public interface AccountantRepository extends MongoRepository<Accountant, ObjectId> {
 }

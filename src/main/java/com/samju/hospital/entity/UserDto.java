@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 @Data
 @AllArgsConstructor
@@ -11,10 +12,10 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 public class UserDto {
     @Id
-    private Long id;
+    private ObjectId id;
     private String username;
     private String fullName;
     private String password;
-    private int phoneNumber;
+    private String phoneNumber;
     private String role;
 }

@@ -25,10 +25,6 @@ newUser.setUsername(userDto.getUsername());
     newUser.setPassword(userDto.getPassword());
     newUser.setPhoneNumber(userDto.getPhoneNumber());
     newUser.setRole(userDto.getRole());
-//        Optional<User> existingAdminUser = userRepository.findByUsername(newUser.getUsername());
-//        if(existingAdminUser.isPresent()){
-//            return null;
-//        }
    return userRepository.save(newUser);
     }
 

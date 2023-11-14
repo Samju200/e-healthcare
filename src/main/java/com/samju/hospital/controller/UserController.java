@@ -18,18 +18,18 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
     @Autowired
-    private UserServiceImpl adminServiceImpl;
+    private UserServiceImpl userServiceImpl;
 
 
 
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
         try {
-            Optional <User>  existUser = adminServiceImpl.usernameCheck(userDto.getUsername());
+            Optional <User>  existUser = userServiceImpl.usernameCheck(userDto.getUsername());
             if (existUser.isPresent()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username already exists");
             }
-            User newUser = adminServiceImpl.createUser(userDto);
+            User newUser = userServiceImpl.createUser(userDto);
             // You may want to return only specific information or a success message
             return ResponseEntity.ok("User created successfully with id: " + newUser.getId());
         } catch (DuplicateKeyException e) {
@@ -47,11 +47,10 @@ public class UserController {
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
 
-        Optional<User> userOptional = adminServiceImpl.login(username, password);
+        Optional<User> userOptional = userServiceImpl.login(username, password);
 
         if (userOptional.isPresent()) {
-            // User authenticated successfully
-            // You may generate a JWT token here and return it in the response
+
             return ResponseEntity.ok("Login successful");
         } else {
             // Authentication failed

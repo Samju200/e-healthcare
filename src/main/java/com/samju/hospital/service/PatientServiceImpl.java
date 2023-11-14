@@ -4,13 +4,14 @@ import com.samju.hospital.entity.Patient;
 import com.samju.hospital.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 public class PatientServiceImpl  implements PatientService{
     @Autowired
     private PatientRepository patientRepository;
     @Override
     public Patient createPatientRecord(Patient patient) {
         Patient newPatient = new Patient();
-        newPatient.setId(patient.getId());
         newPatient.setRegistrationType(patient.getRegistrationType());
         newPatient.setHmoType(patient.getHmoType());
         newPatient.setRegistrationNumber(patient.getRegistrationNumber());
@@ -28,4 +29,15 @@ public class PatientServiceImpl  implements PatientService{
        return patientRepository.save(newPatient);
 
     }
+
+    @Override
+    public Optional<Patient> findByRegistration(String registrationNumber) {
+        Optional<Patient> optionalPatient = patientRepository.findByRegistrationNumber(registrationNumber);
+        if(optionalPatient.isPresent()){
+            Patient patient = optionalPatient.get();
+            return Optional.of(patient);
+        }
+        return Optional.empty();
+    }
+
 }
