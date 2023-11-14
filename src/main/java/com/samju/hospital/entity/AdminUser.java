@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "admins")
 public class AdminUser {
     @Id
-    private String id;
+    private Long id;
     private String username;
     private String fullname;
     private String password;

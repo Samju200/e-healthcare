@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 public class AdminUserDto {
     @Id
-    private String id;
+    private int id;
     private String username;
     private String fullname;
     private String password;

@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface AdminRepository extends MongoRepository<AdminUser, String> {
+public interface AdminRepository extends MongoRepository<AdminUser, Long> {
     Optional<AdminUser> findByUsername(String username);
 }
