@@ -17,8 +17,16 @@ public class Doctor {
 
     @Id
     private ObjectId id;
+
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String department;
     private String reports;
+
+    public Doctor(String name, String phoneNumber, String department, String reports) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.department = department;
+        this.reports = reports;
+    }
 }

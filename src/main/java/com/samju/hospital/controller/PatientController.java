@@ -3,6 +3,7 @@ package com.samju.hospital.controller;
 import com.mongodb.DuplicateKeyException;
 import com.samju.hospital.entity.Patient;
 import com.samju.hospital.service.PatientServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @RequestMapping("api/patients")
 public class PatientController {
 
+    @Autowired
     private PatientServiceImpl patientServiceImpl;
 
     @RequestMapping("/create")

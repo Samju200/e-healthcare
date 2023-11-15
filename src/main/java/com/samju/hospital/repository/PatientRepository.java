@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface PatientRepository extends MongoRepository<Patient, ObjectId> {
     Optional<Patient> findByRegistrationNumber(String registrationNumber);
+    Optional<Patient> findByRegistrationNumber(String registrationNumber, Patient parent);
 }

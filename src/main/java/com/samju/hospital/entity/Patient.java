@@ -29,8 +29,8 @@ public class Patient {
     private String firstname;
     private String phoneNumber;
     private String address;
-    private Date dateOfBirth;
-    private int age;
+    private String dateOfBirth;
+    private String age;
     private String nextOfKinName;
     private String nextOfKinPhoneNumber;
     private String nextOfKinAddress;

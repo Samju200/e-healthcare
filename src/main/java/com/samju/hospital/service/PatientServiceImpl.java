@@ -3,9 +3,10 @@ package com.samju.hospital.service;
 import com.samju.hospital.entity.Patient;
 import com.samju.hospital.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class PatientServiceImpl  implements PatientService{
     @Autowired
     private PatientRepository patientRepository;
@@ -26,6 +27,11 @@ public class PatientServiceImpl  implements PatientService{
         newPatient.setNextOfKinName(patient.getNextOfKinName());
         newPatient.setNextOfKinAddress(patient.getNextOfKinAddress());
         newPatient.setNextOfKinPhoneNumber(patient.getNextOfKinPhoneNumber());
+        newPatient.setDoctorRecords(patient.getDoctorRecords());
+        newPatient.setNurseRecords(patient.getNurseRecords());
+        newPatient.setPharmacyRecords(patient.getPharmacyRecords());
+        newPatient.setLaboratoryResults(patient.getLaboratoryResults());
+        newPatient.setRadiologyRecords(patient.getRadiologyRecords());
        return patientRepository.save(newPatient);
 
     }
