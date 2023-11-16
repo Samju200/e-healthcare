@@ -190,37 +190,37 @@ public class Patient {
      * A list of doctors associated with the patient, referenced by their unique identifiers.
      */
     @DocumentReference
-    private List<Doctor> doctor;
+    private List<Doctor> doctors;
 
     /**
      * A list of nurses associated with the patient, referenced by their unique identifiers.
      */
     @DocumentReference
-    private List<Nurse> nurse;
+    private List<Nurse> nurses;
 
     /**
      * A list of laboratories associated with the patient, referenced by their unique identifiers.
      */
     @DocumentReference
-    private List<Laboratory> laboratory;
+    private List<Laboratory> laboratories;
 
     /**
      * A list of radiology services associated with the patient, referenced by their unique identifiers.
      */
     @DocumentReference
-    private List<Radiology> radiology;
+    private List<Radiology> radiologys;
 
     /**
      * A list of pharmacy services associated with the patient, referenced by their unique identifiers.
      */
     @DocumentReference
-    private List<Pharmacy> pharmacy;
+    private List<Pharmacy> pharmacies;
 
     /**
      * A list of accounts associated with the patient, referenced by their unique identifiers.
      */
     @DocumentReference
-    private List<Account> account;
+    private List<Account> accounts;
 
     /**
      * Default constructor to create a {@code Patient} instance with basic information,

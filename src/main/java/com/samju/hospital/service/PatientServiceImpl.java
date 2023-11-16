@@ -71,12 +71,12 @@ public class PatientServiceImpl implements PatientService {
         newPatient.setNextOfKinAddress(patient.getNextOfKinAddress());
         newPatient.setNextOfKinPhoneNumber(patient.getNextOfKinPhoneNumber());
 
-        newPatient.setDoctor(patient.getDoctor());
-        newPatient.setNurse(patient.getNurse());
-        newPatient.setPharmacy(patient.getPharmacy());
-        newPatient.setLaboratory(patient.getLaboratory());
-        newPatient.setRadiology(patient.getRadiology());
-        newPatient.setAccount(patient.getAccount());
+        newPatient.setDoctors(patient.getDoctors());
+        newPatient.setNurses(patient.getNurses());
+        newPatient.setPharmacies(patient.getPharmacies());
+        newPatient.setLaboratories(patient.getLaboratories());
+        newPatient.setRadiologys(patient.getRadiologys());
+        newPatient.setAccounts(patient.getAccounts());
 
         return patientRepository.save(newPatient);
     }

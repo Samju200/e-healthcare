@@ -70,7 +70,7 @@ public class PharmacyService {
         // Update the patient with the newly created pharmacy record
         mongoTemplate.update(Patient.class)
                 .matching(Criteria.where("registrationNumber").is(registrationNumber))
-                .apply(new Update().push("pharmacies").value(drugAdminister))
+                .apply(new Update().push("pharmacy").value(drugAdminister))
                 .first();
 
         return drugAdminister;

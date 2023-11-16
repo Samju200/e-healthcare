@@ -69,7 +69,7 @@ public class AccountService {
         // Update the patient with the newly created account
         mongoTemplate.update(Patient.class)
                 .matching(Criteria.where("registrationNumber").is(registrationNumber))
-                .apply(new Update().push("accounts").value(totalAmount))
+                .apply(new Update().push("account").value(totalAmount))
                 .first();
 
         return totalAmount;

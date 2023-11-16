@@ -71,7 +71,7 @@ public class LaboratoryService {
         // Update the patient with the newly created laboratory test
         mongoTemplate.update(Patient.class)
                 .matching(Criteria.where("registrationNumber").is(registrationNumber))
-                .apply(new Update().push("laboratories").value(labTest))
+                .apply(new Update().push("laboratory").value(labTest))
                 .first();
 
         return labTest;

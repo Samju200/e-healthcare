@@ -72,7 +72,7 @@ public class RadiologyService {
         // Update the patient with the newly created radiology record
         mongoTemplate.update(Patient.class)
                 .matching(Criteria.where("registrationNumber").is(registrationNumber))
-                .apply(new Update().push("radiologys").value(scannerResults))
+                .apply(new Update().push("radiology").value(scannerResults))
                 .first();
 
         return scannerResults;
