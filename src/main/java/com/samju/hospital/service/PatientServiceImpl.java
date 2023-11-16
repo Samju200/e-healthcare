@@ -7,10 +7,52 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+/**
+ * The {@code PatientServiceImpl} class implements the {@link PatientService} interface
+ * and provides the implementation for managing {@link Patient} entities in the hospital management system.
+ * It is annotated with {@link Service} to indicate that it is a Spring service and should be
+ * automatically detected and registered in the application context.
+ *
+ * <p>Methods in this implementation include:
+ * <ul>
+ *   <li>{@link #createPatientRecord(Patient)}: Create a new patient record.</li>
+ *   <li>{@link #findByRegistration(String)}: Find a patient by their registration number.</li>
+ *   <li>{@link #findAllPatient()}: Retrieve a list of all patients.</li>
+ * </ul>
+ *
+ * <p>Usage example:
+ * <pre>
+ * {@code
+ * public class SomeController {
+ *     PatientService patientService;
+ *
+ *     // Some method that uses the service
+ *     void someMethod() {
+ *         Patient newPatient = // Create a new patient instance
+ *         Patient createdPatient = patientService.createPatientRecord(newPatient);
+ *         // Perform operations with the created patient record
+ *     }
+ * }
+ * }
+ * </pre>
+ *
+ * @see PatientService
+ * @see PatientRepository
+ * @see Service
+ * @version 1.0
+ */
 @Service
-public class PatientServiceImpl  implements PatientService{
+public class PatientServiceImpl implements PatientService {
+
     @Autowired
     private PatientRepository patientRepository;
+
+    /**
+     * Create a new patient record.
+     *
+     * @param patient The patient entity to be created.
+     * @return The created patient entity.
+     */
     @Override
     public Patient createPatientRecord(Patient patient) {
         Patient newPatient = new Patient();
@@ -35,23 +77,28 @@ public class PatientServiceImpl  implements PatientService{
         newPatient.setLaboratory(patient.getLaboratory());
         newPatient.setRadiology(patient.getRadiology());
         newPatient.setAccount(patient.getAccount());
-       return patientRepository.save(newPatient);
 
+        return patientRepository.save(newPatient);
     }
 
+    /**
+     * Find a patient by their registration number.
+     *
+     * @param registrationNumber The registration number of the patient.
+     * @return An optional containing the found patient, or empty if not found.
+     */
     @Override
     public Optional<Patient> findByRegistration(String registrationNumber) {
-        Optional<Patient> optionalPatient = patientRepository.findByRegistrationNumber(registrationNumber);
-        if(optionalPatient.isPresent()){
-            Patient patient = optionalPatient.get();
-            return Optional.of(patient);
-        }
-        return Optional.empty();
+        return patientRepository.findByRegistrationNumber(registrationNumber);
     }
 
+    /**
+     * Retrieve a list of all patients.
+     *
+     * @return A list of all patients in the system.
+     */
     @Override
     public List<Patient> findAllPatient() {
         return patientRepository.findAll();
     }
-
 }
