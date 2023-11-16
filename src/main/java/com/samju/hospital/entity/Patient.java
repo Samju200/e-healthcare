@@ -3,18 +3,17 @@ package com.samju.hospital.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-import java.util.Date;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 @Data
 @AllArgsConstructor
 @Builder
-@NoArgsConstructor
 @Document(collection = "patients")
 public class Patient {
     @Id
@@ -34,17 +33,30 @@ public class Patient {
     private String nextOfKinName;
     private String nextOfKinPhoneNumber;
     private String nextOfKinAddress;
+    private String time;
+    private int day;
+    private Month month;
+    private int year;
     @DocumentReference
-    private List<Doctor> doctorRecords;
+    private List<Doctor> doctor;
     @DocumentReference
-    private List<Nurse> nurseRecords;
+    private List<Nurse> nurse;
     @DocumentReference
-    private List<Laboratory> laboratoryResults;
+    private List<Laboratory> laboratory;
     @DocumentReference
-    private List<Radiology> radiologyRecords;
+    private List<Radiology> radiology;
     @DocumentReference
-    private List<Pharmacy> pharmacyRecords;
+    private List<Pharmacy> pharmacy;
     @DocumentReference
-    private List<Accountant> accountantRecords;
+    private List<Account> account;
 
+    public Patient() {
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        this.time  = currentTime.format(formatter);
+        this.day = LocalDate.now().getDayOfMonth();
+        this.month = YearMonth.now().getMonth();
+        this.year = Year.now().getValue();
+
+    }
 }

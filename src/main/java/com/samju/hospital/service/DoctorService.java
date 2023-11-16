@@ -16,17 +16,17 @@ public class DoctorService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public Doctor createDoctorReport(String name, String phoneNumber, String department, String reports, String registrationNumber) {
+    public Doctor createDoctorReport(String fullName, String phoneNumber, String department, String reports, String registrationNumber) {
 
 
-        Doctor doctorConsult = new Doctor(name, phoneNumber, department, reports);
+        Doctor doctors = new Doctor(fullName, phoneNumber, department, reports);
 
-        doctorRepository.insert(doctorConsult);
+        doctorRepository.insert(doctors);
 
         mongoTemplate.update(Patient.class)
                 .matching(Criteria.where("registrationNumber").is(registrationNumber)).
-                apply(new Update().push("doctorConsult").value(doctorConsult) ).first();
+                apply(new Update().push("doctors").value(doctors) ).first();
 
-        return doctorConsult;
+        return doctors;
     }
 }
