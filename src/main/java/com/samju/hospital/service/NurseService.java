@@ -1,5 +1,6 @@
 package com.samju.hospital.service;
 
+import com.samju.hospital.entity.Account;
 import com.samju.hospital.entity.Doctor;
 import com.samju.hospital.entity.Nurse;
 import com.samju.hospital.entity.Patient;
@@ -10,6 +11,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * The {@code NurseService} class provides business logic for managing {@link Nurse} entities
@@ -78,4 +81,14 @@ public class NurseService {
 
         return nurseReport;
     }
+    /**
+     * Retrieve a list of all nurses.
+     *
+     * @return A {@link List} of {@link Nurse} objects representing all nurses.
+     * @see NurseRepository#findAll()
+     */
+    public List<Nurse> findAllNurses() {
+        return nurseRepository.findAll();
+    }
+
 }

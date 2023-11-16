@@ -1,5 +1,6 @@
 package com.samju.hospital.service;
 
+import com.samju.hospital.entity.Account;
 import com.samju.hospital.entity.Patient;
 import com.samju.hospital.entity.Pharmacy;
 import com.samju.hospital.repository.PharmacyRepository;
@@ -8,6 +9,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * The {@code PharmacyService} class provides business logic for managing {@link Pharmacy} entities
@@ -75,4 +78,14 @@ public class PharmacyService {
 
         return drugAdminister;
     }
+    /**
+     * Retrieve a list of all pharmacies.
+     *
+     * @return A {@link List} of {@link Pharmacy} objects representing all pharmacies.
+     * @see PharmacyRepository#findAll()
+     */
+    public List<Pharmacy> findAllPharmacies() {
+        return pharmacyRepository.findAll();
+    }
+
 }

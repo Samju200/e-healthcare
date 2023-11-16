@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -77,7 +78,17 @@ public class OperationalController {
                 payload.get("registrationNumber")),
                 HttpStatus.OK);
     }
-
+    /**
+     * Retrieve a list of all doctors.
+     *
+     * @return A {@link ResponseEntity} containing the list of doctors and the HTTP status code indicating the result.
+     * @see ResponseEntity
+     * @see DoctorService#findAllDoctors()
+     */
+    @GetMapping("/doctors")
+    public  ResponseEntity<List<Doctor>> getAllDoctors(){
+        return  new ResponseEntity<>(doctorService.findAllDoctors(), HttpStatus.OK);
+    }
     /**
      * Create a new nurse report.
      *
@@ -94,7 +105,17 @@ public class OperationalController {
                 payload.get("registrationNumber")),
                 HttpStatus.OK);
     }
-
+    /**
+     * Retrieve a list of all nurses.
+     *
+     * @return A {@link ResponseEntity} containing the list of doctors and the HTTP status code indicating the result.
+     * @see ResponseEntity
+     * @see NurseService#findAllNurses()
+     */
+    @GetMapping("/nurses")
+    public  ResponseEntity<List<Nurse>> getAllNurses(){
+        return  new ResponseEntity<>(nurseService.findAllNurses(), HttpStatus.OK);
+    }
     /**
      * Create a new laboratory test.
      *
@@ -112,6 +133,17 @@ public class OperationalController {
     }
 
     /**
+     * Retrieve a list of all laboratory.
+     *
+     * @return A {@link ResponseEntity} containing the list of doctors and the HTTP status code indicating the result.
+     * @see ResponseEntity
+     * @see LaboratoryService#findAllLaboratories()
+     */
+    @GetMapping("/labs")
+    public  ResponseEntity<List<Laboratory>> getAllLaboratories(){
+        return  new ResponseEntity<>(laboratoryService.findAllLaboratories(), HttpStatus.OK);
+    }
+    /**
      * Create a new pharmacy record for drug administration.
      *
      * @param payload The request payload containing information for creating a pharmacy record.
@@ -128,6 +160,17 @@ public class OperationalController {
     }
 
     /**
+     * Retrieve a list of all pharmacies.
+     *
+     * @return A {@link ResponseEntity} containing the list of doctors and the HTTP status code indicating the result.
+     * @see ResponseEntity
+     * @see PharmacyService#findAllPharmacies()
+     */
+    @GetMapping("/pharmacies")
+    public  ResponseEntity<List<Pharmacy>> getAllPharmacies(){
+        return  new ResponseEntity<>(pharmacyService.findAllPharmacies(), HttpStatus.OK);
+    }
+    /**
      * Create a new radiology scan.
      *
      * @param payload The request payload containing information for creating a radiology scan.
@@ -143,7 +186,17 @@ public class OperationalController {
                 payload.get("registrationNumber")),
                 HttpStatus.OK);
     }
-
+    /**
+     * Retrieve a list of all radiologist.
+     *
+     * @return A {@link ResponseEntity} containing the list of doctors and the HTTP status code indicating the result.
+     * @see ResponseEntity
+     * @see RadiologyService#findAllRadiology()
+     */
+    @GetMapping("/radiology")
+    public  ResponseEntity<List<Radiology>> getAllRadiology(){
+        return  new ResponseEntity<>(radiologyService.findAllRadiology(), HttpStatus.OK);
+    }
     /**
      * Create a new account record for billing.
      *
@@ -158,5 +211,17 @@ public class OperationalController {
                 payload.get("amount"),
                 payload.get("registrationNumber")),
                 HttpStatus.OK);
+    }
+
+    /**
+     * Retrieve a list of all accountant.
+     *
+     * @return A {@link ResponseEntity} containing the list of doctors and the HTTP status code indicating the result.
+     * @see ResponseEntity
+     * @see AccountService#findAllAccountants() ()
+     */
+    @GetMapping("/accounts")
+    public  ResponseEntity<List<Account>> getAllAccountant(){
+        return  new ResponseEntity<>(accountService.findAllAccountants(), HttpStatus.OK);
     }
 }

@@ -1,6 +1,7 @@
 package com.samju.hospital.service;
 
 
+import com.samju.hospital.entity.Account;
 import com.samju.hospital.entity.Laboratory;
 import com.samju.hospital.entity.Patient;
 import com.samju.hospital.repository.LaboratoryRepository;
@@ -9,6 +10,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * The {@code LaboratoryService} class provides business logic for managing {@link Laboratory} entities
@@ -76,4 +79,14 @@ public class LaboratoryService {
 
         return labTest;
     }
+    /**
+     * Retrieve a list of all laboratories.
+     *
+     * @return A {@link List} of {@link Laboratory} objects representing all laboratories.
+     * @see LaboratoryRepository#findAll()
+     */
+    public List<Laboratory> findAllLaboratories() {
+        return laboratoryRepository.findAll();
+    }
+
 }

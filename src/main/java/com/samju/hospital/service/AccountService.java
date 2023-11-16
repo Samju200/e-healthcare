@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * The {@code AccountService} class provides business logic for managing {@link Account} entities
  * in the hospital management system. It is annotated with {@link Service} to indicate that it is a
@@ -74,4 +76,14 @@ public class AccountService {
 
         return totalAmount;
     }
+    /**
+     * Retrieve a list of all accountants.
+     *
+     * @return A {@link List} of {@link Account} objects representing all accountants.
+     * @see AccountRepository#findAll()
+     */
+    public List<Account> findAllAccountants() {
+        return accountRepository.findAll();
+    }
+
 }

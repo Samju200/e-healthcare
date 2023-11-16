@@ -10,6 +10,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * The {@code RadiologyService} class provides business logic for managing {@link Radiology} entities
  * in the hospital management system. It is annotated with {@link Service} to indicate that it is a
@@ -77,4 +79,14 @@ public class RadiologyService {
 
         return scannerResults;
     }
+    /**
+     * Retrieve a list of all radiology records.
+     *
+     * @return A {@link List} of {@link Radiology} objects representing all radiology records.
+     * @see RadiologyRepository#findAll()
+     */
+    public List<Radiology> findAllRadiology() {
+        return radiologyRepository.findAll();
+    }
+
 }
