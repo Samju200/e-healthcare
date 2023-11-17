@@ -38,6 +38,7 @@ import java.util.Optional;
  * @see Patient
  * @version 1.0
  */
+@CrossOrigin
 @RestController
 @RequestMapping("api/patients")
 public class PatientController {

@@ -45,6 +45,7 @@ import java.util.Map;
  * @see AccountService
  * @version 1.0
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class OperationalController {
