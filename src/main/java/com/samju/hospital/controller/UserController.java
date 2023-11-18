@@ -38,7 +38,7 @@ import java.util.Optional;
  * @see UserServiceImpl
  * @version 1.0
  */
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {

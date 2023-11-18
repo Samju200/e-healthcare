@@ -16,13 +16,13 @@ public class EhealthcareApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EhealthcareApplication.class, args);
 	}
-	@Configuration
-	@EnableWebMvc
-	public class WebConfig implements WebMvcConfigurer {
-
-		@Override
-		public void addCorsMappings(CorsRegistry registry) {
-			registry.addMapping("/**");
-		}
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
+			}
+		};
 	}
 }
