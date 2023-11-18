@@ -38,7 +38,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-@Document(collection = "admins")
+@Document(collection = "users")
 public class User {
 
     /**
