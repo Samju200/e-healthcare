@@ -79,19 +79,9 @@ public class UserServiceImpl implements UserService {
      * @return An optional containing the authenticated user, or empty if authentication fails.
      */
     @Override
-    public Optional<User> login(String username, String password) {
-        Optional<User> adminUserOptional = userRepository.findByUsername(username);
+    public User login(String username, String password) {
 
-        if (adminUserOptional.isPresent()) {
-            User user = adminUserOptional.get();
-
-            // Check if the provided password matches the stored password (consider using a password encoder)
-            if (password.equals(user.getPassword())) {
-                return Optional.of(user);
-            }
-        }
-
-        return Optional.empty();
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
     /**

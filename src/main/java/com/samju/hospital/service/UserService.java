@@ -52,7 +52,7 @@ public interface UserService {
      * @param password The password of the user.
      * @return An optional containing the authenticated user, or empty if authentication fails.
      */
-    Optional<User> login(String username, String password);
+    User login(String username, String password);
 
     /**
      * Check if a username is already in use.

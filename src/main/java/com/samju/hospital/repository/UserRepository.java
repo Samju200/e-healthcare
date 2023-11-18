@@ -55,4 +55,5 @@ public interface UserRepository extends MongoRepository<User, ObjectId> {
      * @return An optional containing the found user, or empty if not found.
      */
     Optional<User> findByUsername(String username);
+    User findByUsernameAndPassword(String username, String password);
 }

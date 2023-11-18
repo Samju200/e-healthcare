@@ -61,7 +61,7 @@ public class UserController {
             }
             User newUser = userServiceImpl.createUser(userDto);
             // You may want to return only specific information or a success message
-            return ResponseEntity.ok("User created successfully with id: " + newUser.getId());
+            return new ResponseEntity<>(newUser, HttpStatus.OK);
         } catch (DuplicateKeyException e) {
             // Handle duplicate username exception
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username already exists");
@@ -79,17 +79,12 @@ public class UserController {
      * @return A {@link ResponseEntity} with a status code and a message indicating the result of the login attempt.
      */
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User loginRequest) {
+    public User login(@RequestBody User loginRequest) {
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
 
-        Optional<User> userOptional = userServiceImpl.login(username, password);
+        return userServiceImpl.login(username, password);
 
-        if (userOptional.isPresent()) {
-            return ResponseEntity.ok("Login successful");
-        } else {
-            // Authentication failed
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-        }
+
     }
 }
