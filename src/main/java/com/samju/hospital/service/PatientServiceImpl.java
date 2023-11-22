@@ -59,6 +59,7 @@ public class PatientServiceImpl implements PatientService {
         newPatient.setRegistrationType(patient.getRegistrationType());
         newPatient.setHmoType(patient.getHmoType());
         newPatient.setRegistrationNumber(patient.getRegistrationNumber());
+        newPatient.setHmoNumber(patient.getHmoNumber());
         newPatient.setPatientStatus(patient.getPatientStatus());
         newPatient.setTitle(patient.getTitle());
         newPatient.setSurname(patient.getSurname());

@@ -69,7 +69,7 @@ public class OperationalController {
      * @param payload The request payload containing information for creating a doctor report.
      * @return A {@link ResponseEntity} containing the created {@link Doctor} entity and an HTTP status.
      */
-    @PostMapping("/doctor")
+    @PostMapping("/doctor/create")
     public ResponseEntity<Doctor> createDoctor(@RequestBody Map<String, String> payload) {
         return new ResponseEntity<>(doctorService.createDoctorReport(
                 payload.get("fullName"),
@@ -96,7 +96,7 @@ public class OperationalController {
      * @param payload The request payload containing information for creating a nurse report.
      * @return A {@link ResponseEntity} containing the created {@link Nurse} entity and an HTTP status.
      */
-    @PostMapping("/nurse")
+    @PostMapping("/nurse/create")
     public ResponseEntity<Nurse> createNurse(@RequestBody Map<String, String> payload) {
         return new ResponseEntity<>(nurseService.createNurseReport(
                 payload.get("fullName"),
@@ -123,7 +123,7 @@ public class OperationalController {
      * @param payload The request payload containing information for creating a laboratory test.
      * @return A {@link ResponseEntity} containing the created {@link Laboratory} entity and an HTTP status.
      */
-    @PostMapping("/lab")
+    @PostMapping("/lab/create")
     public ResponseEntity<Laboratory> createLab(@RequestBody Map<String, String> payload) {
         return new ResponseEntity<>(laboratoryService.createLabTest(
                 payload.get("fullName"),
@@ -150,7 +150,7 @@ public class OperationalController {
      * @param payload The request payload containing information for creating a pharmacy record.
      * @return A {@link ResponseEntity} containing the created {@link Pharmacy} entity and an HTTP status.
      */
-    @PostMapping("/pharmacy")
+    @PostMapping("/pharmacy/create")
     public ResponseEntity<Pharmacy> createPharmacy(@RequestBody Map<String, String> payload) {
         return new ResponseEntity<>(pharmacyService.createDrugAdminister(
                 payload.get("fullName"),
@@ -177,7 +177,7 @@ public class OperationalController {
      * @param payload The request payload containing information for creating a radiology scan.
      * @return A {@link ResponseEntity} containing the created {@link Radiology} entity and an HTTP status.
      */
-    @PostMapping("/radiology")
+    @PostMapping("/radiology/create")
     public ResponseEntity<Radiology> createRadiologyScan(@RequestBody Map<String, String> payload) {
         return new ResponseEntity<>(radiologyService.createScan(
                 payload.get("fullName"),
@@ -204,7 +204,7 @@ public class OperationalController {
      * @param payload The request payload containing information for creating an account record.
      * @return A {@link ResponseEntity} containing the created {@link Account} entity and an HTTP status.
      */
-    @PostMapping("/account")
+    @PostMapping("/account/create")
     public ResponseEntity<Account> createBill(@RequestBody Map<String, String> payload) {
         return new ResponseEntity<>(accountService.createAmount(
                 payload.get("fullName"),

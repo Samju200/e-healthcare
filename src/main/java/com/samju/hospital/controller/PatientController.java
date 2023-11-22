@@ -40,7 +40,7 @@ import java.util.Optional;
  */
 @CrossOrigin
 @RestController
-@RequestMapping("api/patients")
+@RequestMapping("/api")
 public class PatientController {
 
     @Autowired
@@ -52,7 +52,7 @@ public class PatientController {
      * @param patient The {@link Patient} object containing information for creating a patient record.
      * @return A {@link ResponseEntity} with a status code and a message indicating the result of the operation.
      */
-    @RequestMapping("/create")
+    @RequestMapping("/patient/create")
     public ResponseEntity<String> savePatient(@RequestBody Patient patient) {
 
         try {
@@ -76,7 +76,7 @@ public class PatientController {
      *
      * @return A {@link ResponseEntity} containing a list of {@link Patient} entities and an HTTP status.
      */
-    @GetMapping
+    @GetMapping("patients")
     public ResponseEntity<List<Patient>> getAllPatient() {
         return new ResponseEntity<>(patientServiceImpl.findAllPatient(), HttpStatus.OK);
     }
@@ -87,7 +87,7 @@ public class PatientController {
      * @param registrationNumber The registration number of the patient to retrieve.
      * @return A {@link ResponseEntity} containing an {@link Optional} of {@link Patient} and an HTTP status.
      */
-    @GetMapping("/{registrationNumber}")
+    @GetMapping("patient/{registrationNumber}")
     public ResponseEntity<Optional<Patient>> getSinglePatient(@PathVariable String registrationNumber) {
         return new ResponseEntity<>(patientServiceImpl.findByRegistration(registrationNumber), HttpStatus.OK);
     }
