@@ -61,7 +61,8 @@ public class PatientController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Patient already exists");
             }
             Patient newPatient = patientServiceImpl.createPatientRecord(patient);
-            return ResponseEntity.ok("Patient created successfully with id: " + newPatient.getId());
+            return ResponseEntity.ok("Patient created successfully with Registration Number: " + newPatient.getRegistrationNumber()
+                    + "Name:" + newPatient.getFirstname() + newPatient.getSurname()  );
         } catch (DuplicateKeyException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registration Number already exists");
 
