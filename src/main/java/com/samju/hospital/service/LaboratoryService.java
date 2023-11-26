@@ -65,16 +65,16 @@ public class LaboratoryService {
      * @param registrationNumber The registration number of the patient to associate the laboratory test with.
      * @return The created laboratory test.
      */
-    public Laboratory createLabTest(String fullName, String phoneNumber, String labReports, String registrationNumber) {
+    public Laboratory createLabTest(String fullName, String phoneNumber, String testReports, String registrationNumber) {
 
         // Create a new laboratory test
-        Laboratory labTest = new Laboratory(fullName, phoneNumber, labReports);
+        Laboratory labTest = new Laboratory(fullName, phoneNumber, testReports);
         laboratoryRepository.insert(labTest);
 
         // Update the patient with the newly created laboratory test
         mongoTemplate.update(Patient.class)
                 .matching(Criteria.where("registrationNumber").is(registrationNumber))
-                .apply(new Update().push("laboratory").value(labTest))
+                .apply(new Update().push("laboratories").value(labTest))
                 .first();
 
         return labTest;

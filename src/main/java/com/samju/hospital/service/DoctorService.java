@@ -74,7 +74,7 @@ public class DoctorService {
         // Update the patient with the newly created doctor report
         mongoTemplate.update(Patient.class)
                 .matching(Criteria.where("registrationNumber").is(registrationNumber))
-                .apply(new Update().push("doctor").value(doctorReport))
+                .apply(new Update().push("doctors").value(doctorReport))
                 .first();
 
         return doctorReport;

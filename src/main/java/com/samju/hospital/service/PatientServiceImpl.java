@@ -76,7 +76,7 @@ public class PatientServiceImpl implements PatientService {
         newPatient.setNurses(patient.getNurses());
         newPatient.setPharmacies(patient.getPharmacies());
         newPatient.setLaboratories(patient.getLaboratories());
-        newPatient.setRadiologys(patient.getRadiologys());
+        newPatient.setRadiology(patient.getRadiology());
         newPatient.setAccounts(patient.getAccounts());
 
         return patientRepository.save(newPatient);

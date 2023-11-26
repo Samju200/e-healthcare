@@ -208,7 +208,7 @@ public class Patient {
      * A list of radiology services associated with the patient, referenced by their unique identifiers.
      */
     @DocumentReference
-    private List<Radiology> radiologys;
+    private List<Radiology> radiology;
 
     /**
      * A list of pharmacy services associated with the patient, referenced by their unique identifiers.

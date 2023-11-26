@@ -128,7 +128,7 @@ public class OperationalController {
         return new ResponseEntity<>(laboratoryService.createLabTest(
                 payload.get("fullName"),
                 payload.get("phoneNumber"),
-                payload.get("reports"),
+                payload.get("testReports"),
                 payload.get("registrationNumber")),
                 HttpStatus.OK);
     }

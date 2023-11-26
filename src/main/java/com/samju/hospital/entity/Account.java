@@ -111,10 +111,10 @@ public class Account {
      * @param amount      The amount of money associated with the account.
      * @param phoneNumber The contact phone number associated with the account.
      */
-    public Account(String fullName, String amount, String phoneNumber) {
+    public Account(String fullName,  String phoneNumber, String amount) {
         this.fullName = fullName;
-        this.amount = amount;
         this.phoneNumber = phoneNumber;
+        this.amount = amount;
         LocalTime currentTime = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         this.time = currentTime.format(formatter);
