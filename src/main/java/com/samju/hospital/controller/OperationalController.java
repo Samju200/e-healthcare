@@ -1,12 +1,16 @@
 package com.samju.hospital.controller;
 
+
 import com.samju.hospital.entity.*;
 import com.samju.hospital.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -174,19 +178,34 @@ public class OperationalController {
     /**
      * Create a new radiology scan.
      *
-     * @param payload The request payload containing information for creating a radiology scan.
+
      * @return A {@link ResponseEntity} containing the created {@link Radiology} entity and an HTTP status.
      */
     @PostMapping("/radiology/create")
-    public ResponseEntity<Radiology> createRadiologyScan(@RequestBody Map<String, String> payload) {
-        return new ResponseEntity<>(radiologyService.createScan(
-                payload.get("fullName"),
-                payload.get("phoneNumber"),
-                payload.get("images"),
-                payload.get("reports"),
-                payload.get("registrationNumber")),
-                HttpStatus.OK);
+    public ResponseEntity <Radiology> createRadiologyScan( @RequestParam("fullName") String fullName,
+                                                           @RequestParam("phoneNumber") String phoneNumber,
+                                                           @RequestParam("file") MultipartFile file,
+                                                           @RequestParam("reports") String reports,
+                                                           @RequestParam("registrationNumber") String registrationNumber,
+                                                           Model model) {
+        try {
+            Radiology scannerResults = radiologyService.createScan(fullName, phoneNumber, file, reports, registrationNumber);
+
+            // Adding data to the model (if needed)
+            model.addAttribute("message", "Scan created successfully");
+            model.addAttribute("scannerResults", scannerResults);
+
+            return ResponseEntity.ok(scannerResults);
+        } catch (IOException e) {
+
+
+            // Adding error message to the model (if needed)
+            model.addAttribute("error", "Error creating scan");
+
+            return ResponseEntity.status(500).build(); // Internal Server Error
+        }
     }
+
     /**
      * Retrieve a list of all radiologist.
      *

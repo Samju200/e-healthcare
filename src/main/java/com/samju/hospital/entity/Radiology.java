@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -59,7 +60,6 @@ import java.time.format.DateTimeFormatter;
 @Data
 @AllArgsConstructor
 @Builder
-@NoArgsConstructor
 @Document(collection = "radiologys")
 public class Radiology {
 
@@ -82,7 +82,7 @@ public class Radiology {
     /**
      * The images or scans associated with the radiology service.
      */
-    private String images;
+    private Binary images;
 
     /**
      * The reports or summaries associated with the radiology service.
@@ -112,17 +112,10 @@ public class Radiology {
     /**
      * Constructor to create a {@code Radiology} instance with basic information,
      * automatically setting the time, day, month, and year.
-     *
-     * @param fullName    The full name of the radiology service provider.
-     * @param phoneNumber The contact phone number of the radiology service provider.
-     * @param images      The images or scans associated with the radiology service.
-     * @param reports     The reports or summaries associated with the radiology service.
+
      */
-    public Radiology(String fullName, String phoneNumber, String images, String reports) {
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.images = images;
-        this.reports = reports;
+    public Radiology() {
+
         LocalTime currentTime = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         this.time = currentTime.format(formatter);
