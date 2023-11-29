@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -49,17 +51,22 @@ public class UserController {
     /**
      * Create a new user.
      *
-     * @param userDto The {@link UserDto} object containing information for creating a new user.
+
      * @return A {@link ResponseEntity} with a status code and a message indicating the result of the operation.
      */
     @PostMapping("/create")
-    public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<?> createUser( @RequestParam("username") String username,
+                                         @RequestParam("fullName") String fullName,
+                                         @RequestParam("password")String password,
+                                         @RequestParam("phoneNumber")String phoneNumber,
+                                         @RequestParam("role")String role,
+                                         @RequestParam("file") MultipartFile file) {
         try {
-            Optional<User> existUser = userServiceImpl.usernameCheck(userDto.getUsername());
+            Optional<User> existUser = userServiceImpl.usernameCheck(username);
             if (existUser.isPresent()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username already exists");
             }
-            User newUser = userServiceImpl.createUser(userDto);
+            User newUser = userServiceImpl.createUser(username,fullName,password, phoneNumber,role,file );
             // You may want to return only specific information or a success message
             return new ResponseEntity<>(newUser, HttpStatus.OK);
         } catch (DuplicateKeyException e) {

@@ -1,7 +1,9 @@
 package com.samju.hospital.service;
 import com.samju.hospital.entity.User;
 import com.samju.hospital.entity.UserDto;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -43,7 +45,11 @@ public interface UserService {
      * @param userDto The user data transfer object containing user information.
      * @return The created user entity.
      */
-    User createUser(UserDto userDto);
+    User createUser(String username,
+                    String fullName,
+                    String password,
+                    String phoneNumber,
+                    String role, MultipartFile file)throws IOException;
 
     /**
      * Authenticate a user based on username and password.

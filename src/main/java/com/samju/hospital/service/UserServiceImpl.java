@@ -3,11 +3,15 @@ package com.samju.hospital.service;
 import com.samju.hospital.entity.User;
 import com.samju.hospital.entity.UserDto;
 import com.samju.hospital.repository.UserRepository;
+import org.bson.BsonBinarySubType;
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 //import com.samju.hospital.config.SecurityConfig.PasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -61,13 +65,19 @@ public class UserServiceImpl implements UserService {
      * @return The created user entity.
      */
     @Override
-    public User createUser(UserDto userDto) {
+    public User createUser(String username,
+                           String fullName,
+                           String password,
+                           String phoneNumber,
+                           String role,
+                           MultipartFile file) throws IOException {
         User newUser = new User();
-        newUser.setUsername(userDto.getUsername());
-        newUser.setFullName(userDto.getFullName());
-        newUser.setPassword(userDto.getPassword());
-        newUser.setPhoneNumber(userDto.getPhoneNumber());
-        newUser.setRole(userDto.getRole());
+        newUser.setUsername(username);
+        newUser.setFullName(fullName);
+        newUser.setPassword(password);
+        newUser.setPhoneNumber(phoneNumber);
+        newUser.setRole(role);
+        newUser.setProfilePicture(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
         return userRepository.save(newUser);
     }
 
